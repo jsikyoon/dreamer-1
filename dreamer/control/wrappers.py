@@ -369,7 +369,7 @@ class DeepMindLabyrinth(object):
     self._action_repeat = action_repeat
     self._random = np.random.RandomState(seed)
     self._env = deepmind_lab.Lab(
-        level=level,
+        level='contributed/dmlab30/'+level,
         observations=['RGB_INTERLEAVED'],
         config={k: str(v) for k, v in self._config.items()},
         level_cache=level_cache)
