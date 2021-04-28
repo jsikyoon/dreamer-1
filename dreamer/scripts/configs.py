@@ -106,6 +106,43 @@ DEFAULTS = dict(
         max_length=27000,
         atari_lifes=True,
     ),
+    dmlab=dict(
+        train_action_noise=0.4,
+        train_action_noise_ramp=-2000000,
+        train_action_noise_min=0.1,
+    ),
+    gru=dict(
+        rssm_model='gru',
+        trxl_pre_lnorm=False,
+        trxl_gate='plus',
+        trxl_layer=2,
+        trxl_n_head=10,
+        trxl_mem_len=8,
+    ),
+    trxl=dict(
+        rssm_model='trxl',
+        trxl_pre_lnorm=False,
+        trxl_gate='plus',
+        trxl_layer=2,
+        trxl_n_head=10,
+        trxl_mem_len=8,
+    ),
+    trxli=dict(
+        rssm_model='trxl',
+        trxl_pre_lnorm=True,
+        trxl_gate='plus',
+        trxl_layer=2,
+        trxl_n_head=10,
+        trxl_mem_len=8,
+    ),
+    trxl_gate_gru=dict(
+        rssm_model='trxl',
+        trxl_pre_lnorm=True,
+        trxl_gate='gru',
+        trxl_layer=2,
+        trxl_n_head=10,
+        trxl_mem_len=8,
+    ),
 )
 
 
@@ -250,7 +287,13 @@ def _model_components(config, params):
         params.get('mean_only', False),
         params.get('min_stddev', 1e-1),
         config.activation,
-        params.get('model_layers', 1))
+        params.get('model_layers', 1),
+        params.get('rssm_model', 'gru'),
+        params.get('trxl_layer', 2),
+        params.get('trxl_n_head', 10),
+        params.get('trxl_mem_len', 8),
+        params.get('trxl_pre_lnorm', False),
+        params.get('trxl_gate', 'plus'))
   else:
     raise NotImplementedError(model)
   return config
