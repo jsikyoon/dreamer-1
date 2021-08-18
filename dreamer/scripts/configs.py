@@ -125,7 +125,7 @@ DEFAULTS = dict(
         trxl_gate='plus',
         trxl_layer=2,
         trxl_n_head=10,
-        trxl_mem_len=8,
+        trxl_mem_len=32,
     ),
     trxli=dict(
         rssm_model='trxl',
@@ -133,7 +133,7 @@ DEFAULTS = dict(
         trxl_gate='plus',
         trxl_layer=2,
         trxl_n_head=10,
-        trxl_mem_len=8,
+        trxl_mem_len=32,
     ),
     trxl_gate_gru=dict(
         rssm_model='trxl',
@@ -141,7 +141,7 @@ DEFAULTS = dict(
         trxl_gate='gru',
         trxl_layer=2,
         trxl_n_head=10,
-        trxl_mem_len=8,
+        trxl_mem_len=32,
     ),
 )
 

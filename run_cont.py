@@ -8,7 +8,7 @@ from datetime import datetime
 img_name = 'google-dreamer'
 
 ## gpu
-gpu_ids = ['5']
+gpu_ids = ['0']
 
 ###############################################################################
 # Volumn options

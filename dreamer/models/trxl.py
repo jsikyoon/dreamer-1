@@ -92,7 +92,7 @@ def positionwise_FF(inp, d_model, d_inner, dropout, kernel_initializer,
     if not pre_lnorm:
       output = tf.contrib.layers.layer_norm(output + inp, begin_norm_axis=-1)
     else:
-      output = gate_func(output, inp, d_model,
+      output = gate_func(tf.nn.relu(output), inp, d_model,
                          kernel_initializer=kernel_initializer, gate=gate)
 
   return output
@@ -173,10 +173,12 @@ def rel_multihead_attn(inp, r, r_w_bias, r_r_bias, attn_mask, mems, d_model,
                                kernel_initializer=kernel_initializer, name='o')
     attn_out = tf.layers.dropout(attn_out, dropout, training=is_training)
 
+    attn_out = tf.contrib.layers.layer_norm(attn_out, begin_norm_axis=-1)
+
     if not pre_lnorm:
       output = tf.contrib.layers.layer_norm(attn_out + inp, begin_norm_axis=-1)
     else:
-      output = gate_func(attn_out, inp, d_model,
+      output = gate_func(tf.nn.relu(attn_out), inp, d_model,
                          kernel_initializer=kernel_initializer, gate=gate)
 
   return output
